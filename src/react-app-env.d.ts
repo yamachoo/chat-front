@@ -1,12 +1,12 @@
 /// <reference types="react-scripts" />
 
-export interface IRegisterQuery {
+export type RegisterQuery = {
   name: string
   email: string
   password: string
 }
 
-export interface ILoginQuery {
+export type LoginQuery = {
   email: string
   password: string
 }

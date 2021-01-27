@@ -11,14 +11,14 @@ import {
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
-import type { IRegisterQuery } from '../../react-app-env'
+import type { RegisterQuery } from '../../react-app-env'
 import { userRegister } from '../../server/user/auth'
 
 export const Register: React.FC = () => {
-  const { register, handleSubmit } = useForm<IRegisterQuery>()
+  const { register, handleSubmit } = useForm<RegisterQuery>()
   const history = useHistory()
   const toast = useToast()
-  const onSubmit = async (data: IRegisterQuery) => {
+  const onSubmit = async (data: RegisterQuery) => {
     try {
       await userRegister(data)
       history.push('/login')

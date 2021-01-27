@@ -11,16 +11,16 @@ import {
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
-import type { ILoginQuery } from '../../react-app-env'
+import type { LoginQuery } from '../../react-app-env'
 import { userLogin } from '../../server/user/auth'
 import { UserContext } from '../App'
 
 export const Login: React.FC = () => {
   const { setUser } = React.useContext(UserContext)
-  const { register, handleSubmit } = useForm<ILoginQuery>()
+  const { register, handleSubmit } = useForm<LoginQuery>()
   const history = useHistory()
   const toast = useToast()
-  const onSubmit = async (data: ILoginQuery) => {
+  const onSubmit = async (data: LoginQuery) => {
     try {
       const result = await userLogin(data)
       setUser({

@@ -1,15 +1,15 @@
 import {
-  ILoginQuery,
-  IRegisterQuery,
-  LoginData
+  LoginData,
+  LoginQuery,
+  RegisterQuery
 } from '../../react-app-env'
 import { server } from '../server'
 
-export const userRegister = async (body: IRegisterQuery) => {
+export const userRegister = async (body: RegisterQuery) => {
   await server.post('/register', body)
 }
 
-export const userLogin = async (body: ILoginQuery): Promise<LoginData> => {
+export const userLogin = async (body: LoginQuery): Promise<LoginData> => {
   const { data } = await server.post('/login', body)
 
   return data
