@@ -20,12 +20,7 @@ type UserContextType = {
 export const UserContext = React.createContext({} as UserContextType)
 
 export const App: React.FC = () => {
-  const [user, setUser] = React.useState({
-    id: 0,
-    name: '',
-    email: '',
-    auth: false
-  } as User)
+  const [user, setUser] = React.useState({} as User)
 
   return (
   <ChakraProvider theme={theme}>

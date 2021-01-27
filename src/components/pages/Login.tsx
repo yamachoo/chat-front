@@ -23,10 +23,7 @@ export const Login: React.FC = () => {
   const onSubmit = async (data: LoginQuery) => {
     try {
       const result = await userLogin(data)
-      setUser({
-        ...result,
-        auth: true
-      })
+      setUser(result)
       history.push('/')
     } catch (error) {
       toast({
