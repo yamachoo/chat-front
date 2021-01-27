@@ -8,18 +8,37 @@ import {
   BrowserRouter as Router,
   Switch
 } from 'react-router-dom'
+import type { User } from '../react-app-env'
 import { routes } from '../routes'
 import { Header } from './structures/Header'
 
-export const App: React.FC = () => (
+type UserContextType = {
+  user: User
+  setUser: React.Dispatch<React.SetStateAction<User>>
+}
+
+export const UserContext = React.createContext({} as UserContextType)
+
+export const App: React.FC = () => {
+  const [user, setUser] = React.useState({
+    id: 0,
+    name: '',
+    email: '',
+    auth: false
+  } as User)
+
+  return (
   <ChakraProvider theme={theme}>
     <Router>
-      <Header />
-      <Switch>
-        {routes.map((config, i) => (
-          <Route key={i} {...config} />
-        ))}
-      </Switch>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Header />
+        <Switch>
+          {routes.map((config, i) => (
+            <Route key={i} {...config} />
+          ))}
+        </Switch>
+      </UserContext.Provider>
     </Router>
   </ChakraProvider>
-)
+  )
+}

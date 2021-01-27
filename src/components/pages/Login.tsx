@@ -13,14 +13,20 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import type { ILoginQuery } from '../../react-app-env'
 import { userLogin } from '../../server/user/auth'
+import { UserContext } from '../App'
 
 export const Login: React.FC = () => {
+  const { setUser } = React.useContext(UserContext)
   const { register, handleSubmit } = useForm<ILoginQuery>()
   const history = useHistory()
   const toast = useToast()
   const onSubmit = async (data: ILoginQuery) => {
     try {
-      await userLogin(data)
+      const result = await userLogin(data)
+      setUser({
+        ...result,
+        auth: true
+      })
       history.push('/')
     } catch (error) {
       toast({

@@ -11,6 +11,7 @@ import { useState } from 'react'
 import * as React from 'react'
 import { io } from 'socket.io-client'
 import { DEVELOPMENT_SERVER_URL } from '../../constants'
+import { UserContext } from '../App'
 
 let url: string
 
@@ -23,8 +24,9 @@ if (process.env.NODE_ENV) {
 const socket = io(url)
 
 export const Home: React.FC = () => {
+  const { user } = React.useContext(UserContext)
   const [text, setText] = useState('')
-  const [messages, setMessages] = useState(['ようこそ Chat App へ！'])
+  const [messages, setMessages] = useState([`${user.name} ようこそ Chat App へ！`])
   const createMessage = () => {
     socket.emit('chat message', text)
     setMessages([...messages, text])

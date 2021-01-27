@@ -1,6 +1,7 @@
 import {
   ILoginQuery,
-  IRegisterQuery
+  IRegisterQuery,
+  LoginData
 } from '../../react-app-env'
 import { server } from '../server'
 
@@ -8,7 +9,7 @@ export const userRegister = async (body: IRegisterQuery) => {
   await server.post('/register', body)
 }
 
-export const userLogin = async (body: ILoginQuery) => {
+export const userLogin = async (body: ILoginQuery): Promise<LoginData> => {
   const { data } = await server.post('/login', body)
 
   return data
