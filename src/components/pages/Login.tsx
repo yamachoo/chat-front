@@ -8,7 +8,7 @@ import {
   Input,
   useToast
 } from '@chakra-ui/react'
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import type { LoginQuery } from '../../react-app-env'
@@ -16,7 +16,7 @@ import { userLogin } from '../../server/user/auth'
 import { UserContext } from '../App'
 
 export const Login: React.FC = () => {
-  const { setUser } = React.useContext(UserContext)
+  const { setUser } = useContext(UserContext)
   const { register, handleSubmit } = useForm<LoginQuery>()
   const history = useHistory()
   const toast = useToast()

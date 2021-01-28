@@ -5,7 +5,7 @@ import {
   Link,
   Spacer
 } from '@chakra-ui/react'
-import * as React from 'react'
+import React from 'react'
 import { Link as ReachLink } from 'react-router-dom'
 import { ColorModeSwitcher } from '../parts/ColorModeSwitcher'
 

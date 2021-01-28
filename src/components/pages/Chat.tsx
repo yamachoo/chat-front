@@ -7,8 +7,10 @@ import {
   List,
   ListItem
 } from '@chakra-ui/react'
-import { useState } from 'react'
-import * as React from 'react'
+import React, {
+  useContext,
+  useState
+} from 'react'
 import { io } from 'socket.io-client'
 import { DEVELOPMENT_SERVER_URL } from '../../constants'
 import { UserContext } from '../App'
@@ -24,7 +26,7 @@ if (process.env.NODE_ENV) {
 const socket = io(url)
 
 export const Chat: React.FC = () => {
-  const { user } = React.useContext(UserContext)
+  const { user } = useContext(UserContext)
   const [text, setText] = useState('')
   const [messages, setMessages] = useState([`${user.name} ようこそ Chat App へ！`])
   const createMessage = () => {
