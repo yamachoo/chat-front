@@ -1,24 +1,30 @@
-import { Home } from '../components/pages/Home'
+import { Chat } from '../components/pages/Chat'
 import { Login } from '../components/pages/Login'
 import { NotFound } from '../components/pages/NotFound'
 import { Register } from '../components/pages/Register'
 
-export const routes = [
+export const guestRoutes = [
   {
     path: '/',
     exact: true,
-    component: Home
-  },
-  {
-    path: '/login',
-    exact: false,
     component: Login
   },
   {
     path: '/register',
     exact: false,
     component: Register
-  },
+  }
+]
+
+export const privateRoutes = [
+  {
+    path: '/chat',
+    exact: true,
+    component: Chat
+  }
+]
+
+export const errorRoutes = [
   {
     path: '*',
     exact: false,

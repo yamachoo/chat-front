@@ -23,7 +23,7 @@ if (process.env.NODE_ENV) {
 
 const socket = io(url)
 
-export const Home: React.FC = () => {
+export const Chat: React.FC = () => {
   const { user } = React.useContext(UserContext)
   const [text, setText] = useState('')
   const [messages, setMessages] = useState([`${user.name} ようこそ Chat App へ！`])

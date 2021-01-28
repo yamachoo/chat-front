@@ -9,7 +9,13 @@ import {
   Switch
 } from 'react-router-dom'
 import type { User } from '../react-app-env'
-import { routes } from '../routes'
+import {
+  errorRoutes,
+  guestRoutes,
+  privateRoutes
+} from '../router'
+import { GuestRoute } from './routes/GuestRoute'
+import { PrivateRoute } from './routes/PrivateRoute'
 import { Header } from './structures/Header'
 
 type UserContextType = {
@@ -28,7 +34,13 @@ export const App: React.FC = () => {
       <UserContext.Provider value={{ user, setUser }}>
         <Header />
         <Switch>
-          {routes.map((config, i) => (
+          {guestRoutes.map((config, i) => (
+            <GuestRoute key={i} {...config} />
+          ))}
+          {privateRoutes.map((config, i) => (
+            <PrivateRoute key={i} {...config} />
+          ))}
+          {errorRoutes.map((config, i) => (
             <Route key={i} {...config} />
           ))}
         </Switch>
