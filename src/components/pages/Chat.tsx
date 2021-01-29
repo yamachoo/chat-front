@@ -30,8 +30,9 @@ export const Chat: React.FC = () => {
   const [text, setText] = useState('')
   const [messages, setMessages] = useState([`${user.name} ようこそ Chat App へ！`])
   const createMessage = () => {
-    socket.emit('chat message', text)
-    setMessages([...messages, text])
+    const message = `${user.name}: ${text}`
+    socket.emit('chat message', message)
+    setMessages([...messages, message])
     setText('')
   }
 
