@@ -21,7 +21,7 @@ export const Register: React.FC = () => {
   const onSubmit = async (data: RegisterQuery) => {
     try {
       await userRegister(data)
-      history.push('/login')
+      history.push('/')
     } catch (error) {
       toast({
         title: 'ユーザー登録に失敗しました…',
