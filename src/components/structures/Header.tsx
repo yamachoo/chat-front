@@ -10,7 +10,10 @@ import {
 import React, {
   useContext
 } from 'react'
-import { Link as ReachLink, useHistory } from 'react-router-dom'
+import {
+  Link as ReachLink,
+  useHistory
+} from 'react-router-dom'
 import type { User } from '../../react-app-env'
 import { userLogout } from '../../server/user/auth'
 import { UserContext } from '../App'
