@@ -6,11 +6,15 @@ import {
   FormLabel,
   Heading,
   Input,
+  Link,
   useToast
 } from '@chakra-ui/react'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
+import {
+  Link as ReachLink,
+  useHistory
+} from 'react-router-dom'
 import type { RegisterQuery } from '../../react-app-env'
 import { userRegister } from '../../server/user/auth'
 
@@ -51,9 +55,12 @@ export const Register: React.FC = () => {
             <FormLabel>パスワード</FormLabel>
             <Input type="password" placeholder="*********" autoComplete="current-password" name="password" ref={register} />
           </FormControl>
-          <Button width="full" colorScheme="teal" variant="outline" type="submit">
+          <Button width="full" colorScheme="teal" variant="outline" type="submit" mb="4">
             登録する
           </Button>
+          <Link as={ReachLink} to="/">
+            既にアカウントをお持ちですか？
+          </Link>
         </form>
       </Box>
     </Center>
