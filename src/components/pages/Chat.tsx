@@ -9,36 +9,47 @@ import {
 } from '@chakra-ui/react'
 import React, {
   useContext,
+  useEffect,
+  useReducer,
   useState
 } from 'react'
-import { io } from 'socket.io-client'
-import { DEVELOPMENT_SERVER_URL } from '../../constants'
+import { CHAT_MESSAGE } from '../../constants'
+import {
+  connect,
+  disconnect,
+  off,
+  receiveMessage,
+  sendMessage
+} from '../../socket'
 import { UserContext } from '../App'
-
-let url: string
-
-if (process.env.NODE_ENV) {
-  url = DEVELOPMENT_SERVER_URL
-} else {
-  url = window.location.origin
-}
-
-const socket = io(url)
 
 export const Chat: React.FC = () => {
   const { user } = useContext(UserContext)
   const [text, setText] = useState('')
-  const [messages, setMessages] = useState([`${user.name} ようこそ Chat App へ！`])
+  const [messages, setMessages] = useReducer(
+    (messages: string[], message: string) => {
+      return messages.concat(message)
+    },
+    [`${user.name} ようこそ Chat App へ！`]
+  )
   const createMessage = () => {
     const message = `${user.name}: ${text}`
-    socket.emit('chat message', message)
-    setMessages([...messages, message])
+    sendMessage(message)
+    setMessages(message)
     setText('')
   }
 
-  socket.on('chat message', (message: string) => {
-    setMessages([...messages, message])
-  })
+  useEffect(() => {
+    connect()
+    receiveMessage((message: string) => {
+      setMessages(message)
+    })
+
+    return () => {
+      off(CHAT_MESSAGE)
+      disconnect()
+    }
+  }, [])
 
   return (
     <Center minH="100vh">
