@@ -23,7 +23,7 @@ import {
 } from '../../socket'
 import { UserContext } from '../App'
 
-export const Chat: React.FC = () => {
+export const TextChat: React.FC = () => {
   const { user } = useContext(UserContext)
   const [text, setText] = useState('')
   const [messages, setMessages] = useReducer(

@@ -9,5 +9,5 @@ export const GuestRoute: React.FC = (props) => {
   const { user } = useContext(UserContext)
   const isAuth = Object.keys(user).length !== 0
 
-  return isAuth ? <Redirect to="/chat" /> : <Route {...props} />
+  return isAuth ? <Redirect to="/text-chat" /> : <Route {...props} />
 }

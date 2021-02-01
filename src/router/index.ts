@@ -1,7 +1,7 @@
-import { Chat } from '../components/pages/Chat'
 import { Login } from '../components/pages/Login'
 import { NotFound } from '../components/pages/NotFound'
 import { Register } from '../components/pages/Register'
+import { TextChat } from '../components/pages/TextChat'
 
 export const guestRoutes = [
   {
@@ -18,9 +18,9 @@ export const guestRoutes = [
 
 export const privateRoutes = [
   {
-    path: '/chat',
+    path: '/text-chat',
     exact: true,
-    component: Chat
+    component: TextChat
   }
 ]
 
