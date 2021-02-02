@@ -28,7 +28,7 @@ export const Login: React.FC = () => {
     try {
       const result = await userLogin(data)
       setUser(result)
-      history.push('/')
+      history.push('/select')
     } catch (error) {
       toast({
         title: 'ログインに失敗しました…',
