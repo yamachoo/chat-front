@@ -1,7 +1,8 @@
 import { io } from 'socket.io-client'
 import {
-  CHAT_MESSAGE,
-  DEVELOPMENT_SERVER_URL
+  DEVELOPMENT_SERVER_URL,
+  RECEIVE_MESSAGE,
+  SEND_MESSAGE
 } from '../constants'
 
 const url = process.env.NODE_ENV === 'production'
@@ -25,9 +26,9 @@ export const off = (event: string) => {
 }
 
 export const sendMessage = (message: string) => {
-  socket.emit(CHAT_MESSAGE, message)
+  socket.emit(SEND_MESSAGE, message)
 }
 
 export const receiveMessage = (messageEvent: Function) => {
-  socket.on(CHAT_MESSAGE, messageEvent)
+  socket.on(RECEIVE_MESSAGE, messageEvent)
 }

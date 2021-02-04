@@ -13,7 +13,7 @@ import React, {
   useReducer,
   useState
 } from 'react'
-import { CHAT_MESSAGE } from '../../constants'
+import { RECEIVE_MESSAGE } from '../../constants'
 import {
   connect,
   disconnect,
@@ -46,7 +46,7 @@ export const TextChat: React.FC = () => {
     })
 
     return () => {
-      off(CHAT_MESSAGE)
+      off(RECEIVE_MESSAGE)
       disconnect()
     }
   }, [])
