@@ -13,14 +13,11 @@ import React, {
   useReducer,
   useState
 } from 'react'
-import { RECEIVE_MESSAGE } from '../../constants'
 import {
-  connect,
-  disconnect,
-  off,
-  receiveMessage,
-  sendMessage
-} from '../../lib/socket'
+  RECEIVE_MESSAGE,
+  SEND_MESSAGE
+} from '../../constants'
+import { socket } from '../../lib/socket'
 import { UserContext } from '../App'
 
 export const TextChat: React.FC = () => {
@@ -34,20 +31,20 @@ export const TextChat: React.FC = () => {
   )
   const createMessage = () => {
     const message = `${user.name}: ${text}`
-    sendMessage(message)
+    socket.emit(SEND_MESSAGE, message)
     setMessages(message)
     setText('')
   }
 
   useEffect(() => {
-    connect()
-    receiveMessage((message: string) => {
+    socket.connect()
+    socket.on(RECEIVE_MESSAGE, (message: string) => {
       setMessages(message)
     })
 
     return () => {
-      off(RECEIVE_MESSAGE)
-      disconnect()
+      socket.off(RECEIVE_MESSAGE)
+      socket.disconnect()
     }
   }, [])
 
