@@ -25,6 +25,10 @@ export const off = (event: string) => {
   socket.off(event)
 }
 
+export const getId = () => {
+  return socket.id
+}
+
 export const sendMessage = (message: string) => {
   socket.emit(SEND_MESSAGE, message)
 }

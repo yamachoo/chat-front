@@ -20,7 +20,7 @@ import {
   off,
   receiveMessage,
   sendMessage
-} from '../../socket'
+} from '../../lib/socket'
 import { UserContext } from '../App'
 
 export const TextChat: React.FC = () => {
